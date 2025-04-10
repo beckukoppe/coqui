@@ -13,6 +13,7 @@ docker run --rm \
   -v coqui_cache:/root/.local/share/tts \
   -v "$(pwd)/output":/app/output \
   -v "$(pwd)/script.py":/app/script.py \
+  -p 5002:5002 \
   $IMAGE_NAME \
   "python /app/script.py"
 
