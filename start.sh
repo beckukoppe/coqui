@@ -9,7 +9,7 @@ mkdir -p output
 
 echo "🗣️ Running script.py inside Docker container..."
 
-docker run --rm \
+docker run --name coqui \
   -v coqui_cache:/root/.local/share/tts \
   -v "$(pwd)/output":/app/output \
   -v "$(pwd)/script.py":/app/script.py \
