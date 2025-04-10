@@ -3,16 +3,17 @@
 set -e
 
 IMAGE_NAME="coqui-tts"
-TEXT="${1:-Hello from Coqui TTS in Docker!}"
-OUT_FILE="output/tts.wav"
+OUT_FILE="output/output.wav"
 
 mkdir -p output
 
-echo "🗣️ Synthesizing: \"$TEXT\""
+echo "🗣️ Running script.py inside Docker container..."
+
 docker run --rm -it \
   -v coqui_cache:/root/.local/share/tts \
   -v "$(pwd)/output":/app/output \
+  -v "$(pwd)/script.py":/app/script.py \
   $IMAGE_NAME \
-  "tts --text '$TEXT' --model_name tts_models/en/ljspeech/vits--neon --out_path /app/$OUT_FILE"
+  "python /app/script.py"
 
-echo "✅ Done. Output saved to: output/tts.wav"
+echo "✅ Done. Output saved to: $OUT_FILE"
