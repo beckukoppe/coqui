@@ -12,9 +12,9 @@ echo "🗣️ Running script.py inside Docker container..."
 docker run --rm\
   -v coqui_cache:/root/.local/share/tts \
   -v "$(pwd)/output":/app/output \
-  -v "$(pwd)/script.py":/app/script.py \
+  -v "$(pwd)/script.sh":/app/script.py \
   -p 5002:5002 \
   $IMAGE_NAME \
-  "python /app/script.py"
+  "./script.sh"
 
 echo "✅ Done. Output saved to: $OUT_FILE"
